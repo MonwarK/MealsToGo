@@ -12,7 +12,7 @@ import {
   Row,
   Rating,
   Address,
-} from "./RestaurantInfoCard.styles";
+} from "./RestaurantInfoCardStyles";
 
 const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -36,8 +36,8 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Title>{name}</Title>
         <Row>
           <Rating>
-            {ratingArray.map(() => (
-              <SvgXml xml={star} width={20} height={20} />
+            {ratingArray.map((_, i) => (
+              <SvgXml key={i} xml={star} width={20} height={20} />
             ))}
           </Rating>
 
