@@ -9,7 +9,7 @@ const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
 `;
 
-function Search() {
+function Search({ isToggled, onToggled }) {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
 
@@ -28,7 +28,8 @@ function Search() {
         onChangeText={(text) => {
           setSearchKeyword(text);
         }}
-        icon={() => <AntDesign name="hearto" size={24} color="black" />}
+        icon={isToggled ? "heart" : "heart-outline"}
+        onIconPress={onToggled}
       />
     </SearchContainer>
   );
