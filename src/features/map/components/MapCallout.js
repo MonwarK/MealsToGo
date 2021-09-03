@@ -31,11 +31,11 @@ const Mytext = styled.Text`
 const isAndroid = Platform.OS === "android";
 
 const MapCallout = ({ restaurant, isMap }) => {
-  const Image = (isAndroid && isMap) ? RestaurantWebView : RestaurantImage;
+  const ImageType = isAndroid && isMap ? RestaurantWebView : RestaurantImage;
 
   return (
     <Container>
-      <Image source={{ uri: restaurant.photos[0] }} />
+      <ImageType source={{ uri: restaurant.photos[0] }} />
       <Mytext>{restaurant.name}</Mytext>
     </Container>
   );

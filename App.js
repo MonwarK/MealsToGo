@@ -11,6 +11,21 @@ import { RestaurantsContextProvider } from "./src/services/restaurants/Restauran
 import { LocationContextProvider } from "./src/services/location/LocationContext";
 import { Navigation } from "./src/infrastructure/navigation/";
 import { FavouritesContextProvider } from "./src/services/favourites/FavouritesContext";
+import * as firebase from "firebase";
+import { AuthenticationContextProvider } from "./src/services/authentication/AuthenticationContext";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA80LXVQB5uWRdQLEZKOwHeVIhqJd99vno",
+  authDomain: "meals-to-go-44a8b.firebaseapp.com",
+  projectId: "meals-to-go-44a8b",
+  storageBucket: "meals-to-go-44a8b.appspot.com",
+  messagingSenderId: "101425868985",
+  appId: "1:101425868985:web:09aff0fedd3b7542626b68",
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 export default function App() {
   let [latoLoaded] = useLato({
@@ -28,13 +43,15 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <FavouritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavouritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
