@@ -13,10 +13,11 @@ import {
   AuthTitle,
 } from "../components/AccountStyles";
 
-const LoginScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { onLogin, isLoading, error } = useContext(AuthenticationContext);
+  const [repeatedPassword, setRepeatedPassword] = useState("");
+  const { onRegister, isLoading, error } = useContext(AuthenticationContext);
 
   return (
     <AccountBackground>
@@ -40,7 +41,17 @@ const LoginScreen = ({ navigation }) => {
             textContentType="password"
             secureTextEntry
             autoCapitalize="none"
-            onChangeText={(u) => setPassword(u)}
+            onChangeText={(p) => setPassword(p)}
+          />
+        </Spacer>
+        <Spacer size="large">
+          <AuthInput
+            label="Confirm Password"
+            value={repeatedPassword}
+            textContentType="password"
+            secureTextEntry
+            autoCapitalize="none"
+            onChangeText={(p) => setRepeatedPassword(p)}
           />
         </Spacer>
         {error && (
@@ -53,11 +64,11 @@ const LoginScreen = ({ navigation }) => {
             <ActivityIndicator />
           ) : (
             <AuthButton
-              icon="lock-open-outline"
+              icon="mail"
               mode="contained"
-              onPress={() => onLogin(email, password)}
+              onPress={() => onRegister(email, password, repeatedPassword)}
             >
-              Login
+              Register
             </AuthButton>
           )}
         </Spacer>
@@ -71,4 +82,4 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;

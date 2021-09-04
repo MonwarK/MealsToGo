@@ -4,13 +4,24 @@ import {
   AccountBackground,
   AccountContainer,
   AccountCover,
+  AnimationWrapper,
   AuthButton,
 } from "../components/AccountStyles";
+import LottieView from "lottie-react-native";
 
 const MainScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
+      <AnimationWrapper>
+        <LottieView
+          key="animation"
+          autoPlay
+          loop
+          resizeMode="cover"
+          source={require("../../../../assets/watermelon.json")}
+        />
+      </AnimationWrapper>
       <AccountContainer>
         <Spacer position="bottom" size="large">
           <AuthButton
@@ -22,9 +33,9 @@ const MainScreen = ({ navigation }) => {
           </AuthButton>
         </Spacer>
         <AuthButton
-          icon="lock-open-outline"
+          icon="mail"
           mode="contained"
-          onPress={() => console.log("Press")}
+          onPress={() => navigation.navigate("RegisterScreen")}
         >
           Register
         </AuthButton>

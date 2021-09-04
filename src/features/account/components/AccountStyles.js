@@ -44,4 +44,13 @@ export const AuthError = styled(Text)`
   font-family: ${(props) => props.theme.fonts.body};
   color: red;
   font-size: ${(props) => props.theme.fontSizes.caption};
+  width: 250px;
+`;
+
+export const AnimationWrapper = styled(View)`
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 30px;
+  padding: ${(props) => props.theme.space[2]};
 `;

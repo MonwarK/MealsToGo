@@ -26,6 +26,7 @@ const Mytext = styled.Text`
   font-family: ${(props) => props.theme.fonts.body};
   text-align: center;
   margin-top: ${(props) => props.theme.space[1]};
+  width: 100px;
 `;
 
 const isAndroid = Platform.OS === "android";
