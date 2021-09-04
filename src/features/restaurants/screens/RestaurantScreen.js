@@ -8,6 +8,7 @@ import Search from "../components/Search";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { FavouritesContext } from "../../../services/favourites/FavouritesContext";
 import FavouritesBar from "../../../components/FavouritesBar";
+import FadeAnimation from "../../../components/animations/FadeAnimation";
 
 const LoadingContainer = styled(View)`
   flex: 1;
@@ -43,21 +44,23 @@ const RestaurantScreen = ({ navigation }) => {
           />
         </LoadingContainer>
       ) : (
-        <RestaurantList
-          data={restaurants}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("RestaurantDetail", { restaurant: item })
-                }
-              >
-                <RestaurantInfoCard restaurant={item} />
-              </TouchableOpacity>
-            );
-          }}
-          keyExtractor={(item) => item.name}
-        />
+        <FadeAnimation>
+          <RestaurantList
+            data={restaurants}
+            renderItem={({ item }) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("RestaurantDetail", { restaurant: item })
+                  }
+                >
+                  <RestaurantInfoCard restaurant={item} />
+                </TouchableOpacity>
+              );
+            }}
+            keyExtractor={(item) => item.name}
+          />
+        </FadeAnimation>
       )}
     </SafeArea>
   );
