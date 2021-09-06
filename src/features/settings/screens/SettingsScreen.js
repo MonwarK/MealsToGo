@@ -1,5 +1,7 @@
-import React, { useContext } from "react";
-import { View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
+import React, { useContext, useState } from "react";
+import { TouchableOpacity, View } from "react-native";
 import { Avatar, List, Text } from "react-native-paper";
 import styled from "styled-components";
 import { Spacer } from "../../../components/Spacer";
@@ -14,11 +16,25 @@ const AvatarContainer = styled(View)`
 
 const SettingsScreen = ({ navigation }) => {
   const { onLogout, user } = useContext(AuthenticationContext);
+  const [image, setImage] = useState(null);
+
+  const profilePicture = async () => {
+    const res = await AsyncStorage.getItem(`${user.uid}-photo`);
+    if (res) {
+      setImage(res);
+    }
+  };
+
+  useFocusEffect(() => {
+    profilePicture();
+  });
 
   return (
     <SafeArea>
       <AvatarContainer>
-        <Avatar.Icon icon="human" />
+        <TouchableOpacity onPress={() => navigation.navigate("CameraScreen")}>
+          <Avatar.Image source={{ uri: image }} size={150} />
+        </TouchableOpacity>
         <Spacer size="large">
           <Text variant="label">{user.email}</Text>
         </Spacer>

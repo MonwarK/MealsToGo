@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { View, Text } from "react-native";
+import CameraScreen from "../../features/settings/screens/CameraScreen";
 import FavouritesScreen from "../../features/settings/screens/FavouritesScreen";
 import SettingsScreen from "../../features/settings/screens/SettingsScreen";
 
@@ -12,7 +12,12 @@ const SettingsNavigator = () => {
       <Stack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, title: "Settings" }}
+      />
+      <Stack.Screen
+        name="CameraScreen"
+        component={CameraScreen}
+        options={{ title: "Camera" }}
       />
       <Stack.Screen
         name="FavouritesScreen"
