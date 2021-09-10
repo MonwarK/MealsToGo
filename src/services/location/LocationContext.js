@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { locationRequest, locationTransform } from "./LocationService";
 
 export const LocationContext = createContext();
@@ -26,6 +26,14 @@ export const LocationContextProvider = ({ children }) => {
         setError(err);
       });
   };
+
+  useEffect(() => {
+    fetch(
+      "http://localhost:5001/meals-to-go-44a8b/us-central1/geocode?city=chicago"
+    )
+      .then((res) => res.json())
+      .then((results) => console.log(results));
+  }, []);
 
   return (
     <LocationContext.Provider
